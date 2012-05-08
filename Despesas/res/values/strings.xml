@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, SpalshActivity!</string>
+    <string name="app_name">Despesas</string>
+    <string name="usuarios_url">http://curso-despesas.herokuapp.com/usuarios.json</string>
+    <string name="base_url">http://curso-despesas.herokuapp.com/usuarios/</string>
+	<string name="metodo_despesas">/despesas.json</string>
+</resources>

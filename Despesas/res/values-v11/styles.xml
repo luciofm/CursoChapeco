@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Comentario -->
+    <style name="DespesasTheme" parent="@android:style/Theme.Holo.Light">
+
+    </style>
+    
+</resources>
