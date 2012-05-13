@@ -25,11 +25,13 @@ public class DespesasApp extends Application {
 		Database.setBuilder(builder);
 		
 		try {
-			mDatabase = ActiveRecordBase.open(this, "despesas.db", 2);
+			mDatabase = ActiveRecordBase.open(this, "despesas.db", 3);
 		} catch (ActiveRecordException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+		
 	}
 
 	public ActiveRecordBase getDatabase() {

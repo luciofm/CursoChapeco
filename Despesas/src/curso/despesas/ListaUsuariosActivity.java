@@ -10,7 +10,6 @@ import org.kroz.activerecord.ActiveRecordException;
 import org.kroz.activerecord.EntitiesHelper;
 
 import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
@@ -60,7 +59,7 @@ public class ListaUsuariosActivity extends ListActivity {
 
 		db = ((DespesasApp) getApplication()).getDatabase();
 
-		task.execute(getString(R.string.usuarios_url));
+		new ListaUsuariosTask(this).execute(getString(R.string.usuarios_url));
 
 		getListView().setOnItemLongClickListener(longClick);
 		
@@ -122,6 +121,11 @@ public class ListaUsuariosActivity extends ListActivity {
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
 		if (item.getItemId() == R.id.add) {
 			showDialog(DIALOG_ADD_USER);
+			return true;
+		}
+		if (item.getItemId() == R.id.refresh) {
+			setListAdapter(null);
+			new ListaUsuariosTask(this).execute(getString(R.string.usuarios_url));
 			return true;
 		}
 		if (item.getItemId() == R.id.about) {
@@ -206,12 +210,18 @@ public class ListaUsuariosActivity extends ListActivity {
 		startActivity(intent);
 	}
 
-	AsyncTask<String, String, ArrayList<Usuario>> task = new AsyncTask<String, String, ArrayList<Usuario>>() {
+	public class ListaUsuariosTask extends AsyncTask<String, String, ArrayList<Usuario>> {
+
+		ListaUsuariosActivity activity;
+
+		public ListaUsuariosTask(Context context) {
+			activity = (ListaUsuariosActivity) context;
+		}
 
 		@Override
 		protected void onPostExecute(ArrayList<Usuario> result) {
 			if (result != null)
-				setListAdapter(new UsuariosAdapter(ListaUsuariosActivity.this,
+				activity.setListAdapter(new UsuariosAdapter(activity,
 						0, result));
 		}
 
@@ -250,6 +260,7 @@ public class ListaUsuariosActivity extends ListActivity {
 				try {
 					Usuario usuario = db.newEntity(Usuario.class);
 					EntitiesHelper.copyFieldsWithoutID(usuario, u.getUsuario());
+					usuario.setId(u.getUsuario().getId());
 					usuario.save();
 				} catch (ActiveRecordException e) {
 					// TODO Auto-generated catch block
@@ -267,7 +278,7 @@ public class ListaUsuariosActivity extends ListActivity {
 		}
 	};
 
-	public static class CriaUsuario extends AsyncTask<String, Void, Usuario> {
+	public class CriaUsuario extends AsyncTask<String, Void, Usuario> {
 
 		ActiveRecordBase db;
 		Context context;
@@ -322,6 +333,7 @@ public class ListaUsuariosActivity extends ListActivity {
 			try {
 				Usuario usuario = db.newEntity(Usuario.class);
 				EntitiesHelper.copyFieldsWithoutID(usuario, u.getUsuario());
+				usuario.setId(u.getUsuario().getId());
 				usuario.save();
 				return usuario;
 			} catch (ActiveRecordException e) {

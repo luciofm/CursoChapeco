@@ -4,10 +4,15 @@
     <item
         android:id="@+id/add"
         android:icon="@android:drawable/ic_menu_add"
-        android:title="Adicionar usuário"
         android:showAsAction="always"
+        android:title="Adicionar usuário"
         android:titleCondensed="Add">
     </item>
+    <item
+        android:id="@+id/refresh"
+        android:icon="@drawable/ic_menu_refresh"
+        android:showAsAction="always"
+        android:title="Refresh"/>
     <item
         android:id="@+id/about"
         android:icon="@android:drawable/ic_menu_info_details"

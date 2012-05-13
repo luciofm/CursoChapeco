@@ -9,11 +9,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-         ads:adUnitId="a14fa6c2e21724e"
-         ads:adSize="BANNER"
-         ads:testDevices="TEST_EMULATOR"
-         ads:loadAdOnCreate="true"
-        />
+        android:layout_centerHorizontal="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="a14fa6c2e21724e"
+        ads:loadAdOnCreate="true"
+        ads:testDevices="TEST_EMULATOR" />
 
     <ListView
         android:id="@android:id/list"
@@ -21,7 +21,11 @@
         android:layout_height="fill_parent"
         android:layout_above="@id/ads" />
 
+    <ProgressBar
+        android:id="@android:id/empty"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
 </RelativeLayout>
-
-
-

@@ -3,7 +3,7 @@ package curso.despesas.DAO;
 import org.kroz.activerecord.ActiveRecordBase;
 
 public class Usuario extends ActiveRecordBase {
-	public int id;
+	public int user_id;
 	public String nome;
 
 	public Usuario() {
@@ -12,16 +12,16 @@ public class Usuario extends ActiveRecordBase {
 
 	public Usuario(int id, String nome) {
 		super();
-		this.id = id;
+		this.user_id = id;
 		this.nome = nome;
 	}
 
 	public int getId() {
-		return id;
+		return user_id;
 	}
 
 	public void setId(int id) {
-		this.id = id;
+		this.user_id = id;
 	}
 
 	public String getNome() {
@@ -34,7 +34,7 @@ public class Usuario extends ActiveRecordBase {
 
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", nome=" + nome + "]";
+		return "Usuario [id=" + user_id + ", nome=" + nome + "]";
 	}
 }
 
